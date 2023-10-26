@@ -3,6 +3,7 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryList = document.querySelector('.gallery');
 const galleryMarkup = createGallery(galleryItems);
+let instance = null;
 
 galleryList.insertAdjacentHTML('beforeend', galleryMarkup);
 galleryList.addEventListener('click', openModalImg);
@@ -33,11 +34,23 @@ function openModalImg(evt) {
 
 	const originalImageSrc = evt.target.dataset.source;
 
-	const instance = basicLightbox.create(`
-		<img src="${originalImageSrc}" width="800" height="600">
-	`);
+	instance = basicLightbox.create(
+		`<img src="${originalImageSrc}" width="800" height="600">`
+	);
 
 	instance.show();
+
+	document.addEventListener('keydown', closeModalOnEsc);
+
+	onClose: (instance) => {
+		document.removeEventListener('keydown', closeModalOnEsc);
+	};
+}
+
+function closeModalOnEsc(event) {
+	if (event.key === 'Escape') {
+		instance.close();
+	}
 }
 
 console.log(galleryItems);

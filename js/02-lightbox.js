@@ -21,12 +21,8 @@ function createGallery(items) {
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {
-	captions: true,
-	captionSelector: 'img',
-	captionType: 'attr',
-	captionsData: alt,
+	captionsData: 'alt',
 	captionDelay: 250,
-	captionPosition: 'bottom',
 });
 
 console.log(galleryItems);
