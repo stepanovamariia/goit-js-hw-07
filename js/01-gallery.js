@@ -35,7 +35,6 @@ function openModalImg(evt) {
 	if (!evt.target.classList.contains('gallery__image')) {
 		return;
 	}
-	console.log(evt.currentTarget);
 
 	const originalImageSrc = evt.target.dataset.source;
 
